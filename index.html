@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<!--
+    ==========================================================================
+    PORTFÓLIO PESSOAL - REINALDO GONÇALVES PEREIRA NETO
+    Página 1 de 4: SOBRE MIM (página inicial)
+
+    Atividade Prática - Fundamentos da Programação Web
+    Desenvolvido em HTML5, CSS3 e JavaScript puro, sem uso de qualquer
+    framework ou biblioteca (Bootstrap, Tailwind, React, jQuery etc.).
+    ==========================================================================
+-->
+<html lang="pt-BR">
+
+<head>
+    <!-- Codificação UTF-8: garante a exibição correta dos acentos -->
+    <meta charset="UTF-8">
+    <!-- Viewport: essencial para o site se adaptar a celulares e tablets -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfólio de Reinaldo Gonçalves Pereira Neto, desenvolvedor .NET em Sete Lagoas, MG. Conheça minha apresentação, hobbies e habilidades técnicas.">
+    <meta name="author" content="Reinaldo Gonçalves Pereira Neto">
+
+    <title>Sobre mim | Reinaldo Gonçalves Pereira Neto</title>
+
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Carregado no <head> sem "defer" para o tema salvo ser aplicado
+         antes de a página aparecer, evitando o efeito de "piscar" -->
+    <script src="js/main.js"></script>
+</head>
+
+<body>
+
+    <!-- ======================================================================
+         CABEÇALHO E MENU DE NAVEGAÇÃO
+         Este mesmo bloco se repete nas 4 páginas do site, atendendo ao
+         requisito de um menu visível em todas elas.
+         ====================================================================== -->
+    <header class="cabecalho">
+        <div class="container cabecalho__conteudo">
+
+            <a href="index.html" class="logo">Reinaldo<span class="logo__destaque">.dev</span></a>
+
+            <nav class="navegacao" id="navegacao" aria-label="Menu principal">
+                <ul class="navegacao__lista">
+                    <!-- aria-current="page" indica a página aberta no momento -->
+                    <li><a href="index.html" class="navegacao__link navegacao__link--ativo" aria-current="page">Sobre mim</a></li>
+                    <li><a href="formacao.html" class="navegacao__link">Formação</a></li>
+                    <li><a href="portfolio.html" class="navegacao__link">Portfólio</a></li>
+                    <li><a href="contato.html" class="navegacao__link">Contato</a></li>
+                </ul>
+            </nav>
+
+            <div class="cabecalho__acoes">
+                <!-- Botão que alterna entre o tema claro e o escuro (main.js) -->
+                <button type="button" class="botao-tema" id="botao-tema"
+                        aria-label="Mudar para o tema escuro" title="Mudar para o tema escuro">
+                    <span class="botao-tema__icone" aria-hidden="true">🌙</span>
+                </button>
+
+                <!-- Botão "hambúrguer": aparece apenas em telas pequenas -->
+                <button type="button" class="botao-menu" id="botao-menu"
+                        aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="navegacao">
+                    <span class="botao-menu__barra"></span>
+                    <span class="botao-menu__barra"></span>
+                    <span class="botao-menu__barra"></span>
+                </button>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- ======================================================================
+         CONTEÚDO PRINCIPAL
+         ====================================================================== -->
+    <main class="conteudo-principal">
+        <div class="container">
+
+            <!-- ===== Apresentação: foto, nome, cargo e resumo profissional ===== -->
+            <section class="apresentacao" aria-labelledby="titulo-apresentacao">
+
+                <img src="assets/img/reinaldo.jpg"
+                     alt="Foto de Reinaldo Gonçalves Pereira Neto"
+                     class="apresentacao__foto" width="200" height="200">
+
+                <div>
+                    <h1 id="titulo-apresentacao">Reinaldo Gonçalves Pereira Neto</h1>
+                    <p class="apresentacao__cargo">Desenvolvedor .NET</p>
+                    <p class="apresentacao__local">📍 Sete Lagoas, Minas Gerais</p>
+
+                    <p class="apresentacao__texto">
+                        Sou desenvolvedor .NET com 3 anos de experiência prática em aplicações
+                        desktop e web, atuando desde o levantamento de requisitos com o cliente
+                        até o deploy e a manutenção evolutiva. Migrei um sistema de gestão legado
+                        de WinForms para WPF e, depois, para Avalonia UI, o que permitiu executá-lo
+                        em Windows e Linux a partir de uma única base de código. Também desenvolvi
+                        o sistema web complementar em Blazor WebAssembly, hoje em produção
+                        atendendo mais de 50 clientes.
+                    </p>
+
+                    <p class="apresentacao__texto">
+                        Atualmente curso Bacharelado em Sistemas de Informação na UNINTER e busco
+                        atuar como desenvolvedor .NET júnior em um time estruturado, onde eu possa
+                        aprender com pessoas mais experientes e contribuir com o que já construí.
+                    </p>
+
+                    <div class="apresentacao__acoes">
+                        <a href="portfolio.html" class="botao botao--primario">Ver meus projetos</a>
+                        <a href="contato.html" class="botao botao--secundario">Entrar em contato</a>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- ===== Hobbies e interesses pessoais ===== -->
+            <section class="bloco" aria-labelledby="titulo-hobbies">
+                <h2 class="bloco__titulo" id="titulo-hobbies">Hobbies e interesses</h2>
+
+                <div class="hobbies">
+
+                    <article class="cartao hobby">
+                        <span class="hobby__icone" aria-hidden="true">🐉</span>
+                        <h3>Séries de fantasia medieval</h3>
+                        <p>
+                            Acompanho séries de fantasia medieval sempre que sobra tempo, e
+                            Game of Thrones é o melhor exemplo do que me atrai no gênero. O que mais
+                            me prende é a construção de mundo: histórias que se sustentam por
+                            temporadas inteiras porque as regras daquele universo foram bem pensadas
+                            desde o início.
+                        </p>
+                    </article>
+
+                    <article class="cartao hobby">
+                        <span class="hobby__icone" aria-hidden="true">🎮</span>
+                        <h3>Jogos de computador</h3>
+                        <p>
+                            Jogo no computador nas horas livres, principalmente Counter-Strike 2.
+                            Além de ser a forma como eu relaxo, é um jogo que exige comunicação
+                            constante e decisão rápida em equipe — duas coisas que acabam sendo
+                            úteis também fora dele.
+                        </p>
+                    </article>
+
+                    <article class="cartao hobby">
+                        <span class="hobby__icone" aria-hidden="true">💻</span>
+                        <h3>Programar</h3>
+                        <p>
+                            Programar é trabalho, mas também é hobby. Uso o tempo livre para
+                            experimentar tecnologias novas e tocar projetos pessoais — este próprio
+                            portfólio foi escrito do zero, linha por linha, em HTML, CSS e JavaScript.
+                        </p>
+                    </article>
+
+                </div>
+            </section>
+
+            <!-- ===== Habilidades técnicas, agrupadas por categoria ===== -->
+            <section class="bloco" aria-labelledby="titulo-habilidades">
+                <h2 class="bloco__titulo" id="titulo-habilidades">Habilidades técnicas</h2>
+
+                <div class="habilidades">
+
+                    <article class="cartao">
+                        <h3 class="habilidade__categoria">Principais</h3>
+                        <ul class="tags">
+                            <li class="tag tag--destaque">C#</li>
+                            <li class="tag tag--destaque">.NET</li>
+                            <li class="tag tag--destaque">ASP.NET Core</li>
+                            <li class="tag tag--destaque">Blazor WebAssembly</li>
+                            <li class="tag tag--destaque">WPF</li>
+                            <li class="tag tag--destaque">Avalonia UI</li>
+                            <li class="tag tag--destaque">Entity Framework Core</li>
+                            <li class="tag tag--destaque">API RESTful</li>
+                            <li class="tag tag--destaque">SignalR</li>
+                        </ul>
+                    </article>
+
+                    <article class="cartao">
+                        <h3 class="habilidade__categoria">Banco de dados</h3>
+                        <ul class="tags">
+                            <li class="tag">SQL Server</li>
+                            <li class="tag">MySQL</li>
+                            <li class="tag">PostgreSQL</li>
+                            <li class="tag">SQLite</li>
+                        </ul>
+                    </article>
+
+                    <article class="cartao">
+                        <h3 class="habilidade__categoria">Conceitos e práticas</h3>
+                        <ul class="tags">
+                            <li class="tag">SOLID</li>
+                            <li class="tag">Clean Code</li>
+                            <li class="tag">MVVM</li>
+                            <li class="tag">MVC</li>
+                            <li class="tag">Injeção de Dependência</li>
+                            <li class="tag">ORM</li>
+                            <li class="tag">xUnit / NUnit</li>
+                        </ul>
+                    </article>
+
+                    <article class="cartao">
+                        <h3 class="habilidade__categoria">Complementares</h3>
+                        <ul class="tags">
+                            <li class="tag">Python</li>
+                            <li class="tag">JavaScript</li>
+                            <li class="tag">HTML5</li>
+                            <li class="tag">CSS3</li>
+                            <li class="tag">PHP</li>
+                            <li class="tag">Git e GitHub</li>
+                            <li class="tag">Linux</li>
+                            <li class="tag">PowerShell</li>
+                            <li class="tag">Shell Script</li>
+                        </ul>
+                    </article>
+
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- ======================================================================
+         RODAPÉ (repetido nas 4 páginas)
+         ====================================================================== -->
+    <footer class="rodape">
+        <div class="container rodape__conteudo">
+            <p class="rodape__texto">
+                &copy; <span id="ano-atual">2026</span> Reinaldo Gonçalves Pereira Neto &mdash;
+                feito com HTML5, CSS3 e JavaScript puro.
+            </p>
+            <ul class="rodape__redes">
+                <!-- rel="noopener noreferrer" é uma boa prática de segurança
+                     para links abertos em nova aba -->
+                <li><a href="https://github.com/reinaldogpn" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+                <li><a href="https://www.linkedin.com/in/reinaldogpn/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+                <li><a href="mailto:reinaldogpn@outlook.com">E-mail</a></li>
+            </ul>
+        </div>
+    </footer>
+
+</body>
+
+</html>

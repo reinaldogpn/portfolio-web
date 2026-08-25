@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<!--
+    ==========================================================================
+    PORTFÓLIO PESSOAL - REINALDO GONÇALVES PEREIRA NETO
+    Página 3 de 4: PORTFÓLIO
+
+    Reúne os trabalhos já realizados, com links para o código-fonte no
+    GitHub e para o artigo científico publicado.
+    ==========================================================================
+-->
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Projetos desenvolvidos por Reinaldo Gonçalves Pereira Neto: sistema de gestão em .NET, aplicação Blazor WebAssembly, visão computacional em Python e jogo em C++.">
+    <meta name="author" content="Reinaldo Gonçalves Pereira Neto">
+
+    <title>Portfólio | Reinaldo Gonçalves Pereira Neto</title>
+
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/main.js"></script>
+</head>
+
+<body>
+
+    <!-- ======================================================================
+         CABEÇALHO E MENU DE NAVEGAÇÃO (idêntico nas 4 páginas)
+         ====================================================================== -->
+    <header class="cabecalho">
+        <div class="container cabecalho__conteudo">
+
+            <a href="index.html" class="logo">Reinaldo<span class="logo__destaque">.dev</span></a>
+
+            <nav class="navegacao" id="navegacao" aria-label="Menu principal">
+                <ul class="navegacao__lista">
+                    <li><a href="index.html" class="navegacao__link">Sobre mim</a></li>
+                    <li><a href="formacao.html" class="navegacao__link">Formação</a></li>
+                    <!-- Item ativo: esta é a página aberta no momento -->
+                    <li><a href="portfolio.html" class="navegacao__link navegacao__link--ativo" aria-current="page">Portfólio</a></li>
+                    <li><a href="contato.html" class="navegacao__link">Contato</a></li>
+                </ul>
+            </nav>
+
+            <div class="cabecalho__acoes">
+                <button type="button" class="botao-tema" id="botao-tema"
+                        aria-label="Mudar para o tema escuro" title="Mudar para o tema escuro">
+                    <span class="botao-tema__icone" aria-hidden="true">🌙</span>
+                </button>
+
+                <button type="button" class="botao-menu" id="botao-menu"
+                        aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="navegacao">
+                    <span class="botao-menu__barra"></span>
+                    <span class="botao-menu__barra"></span>
+                    <span class="botao-menu__barra"></span>
+                </button>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- ======================================================================
+         CONTEÚDO PRINCIPAL
+         ====================================================================== -->
+    <main class="conteudo-principal">
+        <div class="container">
+
+            <!-- ===== Título da página ===== -->
+            <div class="secao-titulo">
+                <span class="secao-titulo__rotulo">Portfólio</span>
+                <h1>Projetos que desenvolvi</h1>
+                <p class="secao-titulo__descricao">
+                    Uma seleção de trabalhos profissionais e acadêmicos. Os projetos com
+                    código aberto trazem o link direto para o repositório no GitHub.
+                </p>
+            </div>
+
+            <!-- ===== Grade de projetos ===== -->
+            <section class="projetos" aria-label="Lista de projetos">
+
+                <!-- Projeto principal: ocupa a largura total da grade -->
+                <article class="cartao projeto projeto--destaque">
+                    <div class="projeto__cabecalho">
+                        <h2>Sistema de gestão multiplataforma (desktop + web)</h2>
+                        <span class="projeto__ano">2023 &mdash; atual</span>
+                    </div>
+
+                    <p class="projeto__descricao">
+                        Projeto freelance que conduzo do início ao fim: levantamento de requisitos
+                        com o cliente, arquitetura, implementação, testes, deploy e manutenção.
+                        Migrei o sistema de gestão desktop de WinForms para WPF com o padrão MVVM
+                        e, depois, para Avalonia UI, permitindo executá-lo em Windows e Linux a
+                        partir de uma única base de código. Em seguida desenvolvi o sistema web
+                        complementar em ASP.NET Core com Blazor WebAssembly, integrado à aplicação
+                        desktop por uma API RESTful. Implementei autenticação e autorização com
+                        ASP.NET Identity e comunicação em tempo real com SignalR e WebSockets.
+                        A solução está em produção e atende mais de 50 clientes.
+                    </p>
+
+                    <ul class="tags projeto__tecnologias">
+                        <li class="tag">C#</li>
+                        <li class="tag">.NET</li>
+                        <li class="tag">WPF</li>
+                        <li class="tag">Avalonia UI</li>
+                        <li class="tag">MVVM</li>
+                        <li class="tag">ASP.NET Core</li>
+                        <li class="tag">Blazor WebAssembly</li>
+                        <li class="tag">Entity Framework Core</li>
+                        <li class="tag">MySQL</li>
+                        <li class="tag">SignalR</li>
+                    </ul>
+
+                    <div class="projeto__links">
+                        <!-- Sem link de repositório: o código pertence ao cliente -->
+                        <span class="projeto__nota">
+                            🔒 Código-fonte privado, por se tratar de um sistema de cliente.
+                        </span>
+                    </div>
+                </article>
+
+                <!-- Iniciação Científica -->
+                <article class="cartao projeto">
+                    <div class="projeto__cabecalho">
+                        <h2>Iniciação Científica: visão computacional com CNNs</h2>
+                        <span class="projeto__ano">2023</span>
+                    </div>
+
+                    <p class="projeto__descricao">
+                        Desenvolvi e avaliei modelos de redes neurais convolucionais aplicados a
+                        problemas de visão computacional. Os resultados foram documentados em um
+                        artigo científico publicado nos Anais do Workshop de Visão Computacional
+                        (WVC 2023).
+                    </p>
+
+                    <ul class="tags projeto__tecnologias">
+                        <li class="tag">Python</li>
+                        <li class="tag">PyTorch</li>
+                        <li class="tag">Scikit-Learn</li>
+                        <li class="tag">NumPy</li>
+                    </ul>
+
+                    <div class="projeto__links">
+                        <a class="projeto__link" href="https://doi.org/10.5753/wvc.2023.27537"
+                           target="_blank" rel="noopener noreferrer">
+                            📄 Ler o artigo publicado &rarr;
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Aplicação Web ASP.NET Core MVC -->
+                <article class="cartao projeto">
+                    <div class="projeto__cabecalho">
+                        <h2>Aplicação web em ASP.NET Core MVC</h2>
+                        <span class="projeto__ano">Pessoal</span>
+                    </div>
+
+                    <p class="projeto__descricao">
+                        Aplicação web com CRUD completo, incluindo validação de dados, roteamento e
+                        interface dinâmica construída em Razor Views. A persistência é feita com
+                        Entity Framework Core sobre um banco MySQL.
+                    </p>
+
+                    <ul class="tags projeto__tecnologias">
+                        <li class="tag">C#</li>
+                        <li class="tag">.NET</li>
+                        <li class="tag">ASP.NET Core</li>
+                        <li class="tag">Entity Framework Core</li>
+                        <li class="tag">MySQL</li>
+                    </ul>
+
+                    <div class="projeto__links">
+                        <a class="projeto__link" href="https://github.com/reinaldogpn/asp-net-core-mvc-project"
+                           target="_blank" rel="noopener noreferrer">
+                            💻 Ver no GitHub &rarr;
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Pac-Man em C++ -->
+                <article class="cartao projeto">
+                    <div class="projeto__cabecalho">
+                        <h2>Réplica do Pac-Man em C++ com Allegro 5</h2>
+                        <span class="projeto__ano">UFV</span>
+                    </div>
+
+                    <p class="projeto__descricao">
+                        Réplica do clássico jogo 2D Pac-Man, desenvolvida em C++ com a biblioteca
+                        gráfica Allegro 5 para a disciplina SIN 141 &mdash; Computação Orientada a
+                        Objetos, na Universidade Federal de Viçosa. O projeto coloca em prática os
+                        pilares da orientação a objetos: classes, herança, composição, abstração de
+                        dados e polimorfismo.
+                    </p>
+
+                    <ul class="tags projeto__tecnologias">
+                        <li class="tag">C++</li>
+                        <li class="tag">Allegro 5</li>
+                        <li class="tag">Orientação a Objetos</li>
+                    </ul>
+
+                    <div class="projeto__links">
+                        <a class="projeto__link" href="https://github.com/reinaldogpn/SIN141-pacman-allegro5-project"
+                           target="_blank" rel="noopener noreferrer">
+                            💻 Ver no GitHub &rarr;
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Classificação de imagens -->
+                <article class="cartao projeto">
+                    <div class="projeto__cabecalho">
+                        <h2>Classificação de imagens em Python</h2>
+                        <span class="projeto__ano">UFV</span>
+                    </div>
+
+                    <p class="projeto__descricao">
+                        Projeto de classificação de imagens desenvolvido para a disciplina
+                        SIN 393 &mdash; Introdução à Visão Computacional, na Universidade Federal
+                        de Viçosa. Utiliza as bibliotecas Scikit-learn e Scikit-image para
+                        classificar imagens do conjunto de dados MPEG7, com aumento de dados
+                        distribuído em quatro classes.
+                    </p>
+
+                    <ul class="tags projeto__tecnologias">
+                        <li class="tag">Python</li>
+                        <li class="tag">Scikit-learn</li>
+                        <li class="tag">Scikit-image</li>
+                        <li class="tag">Visão Computacional</li>
+                    </ul>
+
+                    <div class="projeto__links">
+                        <a class="projeto__link" href="https://github.com/reinaldogpn/SIN393-img-classification-project"
+                           target="_blank" rel="noopener noreferrer">
+                            💻 Ver no GitHub &rarr;
+                        </a>
+                    </div>
+                </article>
+
+            </section>
+
+            <!-- ===== Chamada final para o perfil completo no GitHub ===== -->
+            <section class="bloco" aria-labelledby="titulo-mais-projetos">
+                <h2 class="bloco__titulo" id="titulo-mais-projetos">Quer ver mais?</h2>
+                <!-- Bloco de chamada: usa <div> em vez de <article> porque o
+                     título pertence à seção, e não a um conteúdo independente -->
+                <div class="cartao">
+                    <p>
+                        Meus outros repositórios públicos, incluindo scripts de automação em
+                        PowerShell e Shell Script, estão disponíveis no meu perfil do GitHub.
+                    </p>
+                    <p class="apresentacao__acoes">
+                        <a href="https://github.com/reinaldogpn" class="botao botao--primario"
+                           target="_blank" rel="noopener noreferrer">Ver perfil no GitHub</a>
+                        <a href="contato.html" class="botao botao--secundario">Falar comigo</a>
+                    </p>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- ======================================================================
+         RODAPÉ (idêntico nas 4 páginas)
+         ====================================================================== -->
+    <footer class="rodape">
+        <div class="container rodape__conteudo">
+            <p class="rodape__texto">
+                &copy; <span id="ano-atual">2026</span> Reinaldo Gonçalves Pereira Neto &mdash;
+                feito com HTML5, CSS3 e JavaScript puro.
+            </p>
+            <ul class="rodape__redes">
+                <li><a href="https://github.com/reinaldogpn" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+                <li><a href="https://www.linkedin.com/in/reinaldogpn/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+                <li><a href="mailto:reinaldogpn@outlook.com">E-mail</a></li>
+            </ul>
+        </div>
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<!--
+    ==========================================================================
+    PORTFÓLIO PESSOAL - REINALDO GONÇALVES PEREIRA NETO
+    Página 4 de 4: CONTATO
+
+    Contém o formulário com os campos nome, e-mail e mensagem. A validação
+    é feita inteiramente em JavaScript (arquivo js/contato.js) e o envio é
+    simulado, já que o site é estático e não possui servidor.
+    ==========================================================================
+-->
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Entre em contato com Reinaldo Gonçalves Pereira Neto, desenvolvedor .NET: formulário, e-mail, GitHub e LinkedIn.">
+    <meta name="author" content="Reinaldo Gonçalves Pereira Neto">
+
+    <title>Contato | Reinaldo Gonçalves Pereira Neto</title>
+
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/main.js"></script>
+
+    <!-- Script específico desta página: validação do formulário.
+         O atributo "defer" faz o navegador executá-lo somente depois de
+         ler todo o HTML, garantindo que os campos já existam. -->
+    <script src="js/contato.js" defer></script>
+</head>
+
+<body>
+
+    <!-- ======================================================================
+         CABEÇALHO E MENU DE NAVEGAÇÃO (idêntico nas 4 páginas)
+         ====================================================================== -->
+    <header class="cabecalho">
+        <div class="container cabecalho__conteudo">
+
+            <a href="index.html" class="logo">Reinaldo<span class="logo__destaque">.dev</span></a>
+
+            <nav class="navegacao" id="navegacao" aria-label="Menu principal">
+                <ul class="navegacao__lista">
+                    <li><a href="index.html" class="navegacao__link">Sobre mim</a></li>
+                    <li><a href="formacao.html" class="navegacao__link">Formação</a></li>
+                    <li><a href="portfolio.html" class="navegacao__link">Portfólio</a></li>
+                    <!-- Item ativo: esta é a página aberta no momento -->
+                    <li><a href="contato.html" class="navegacao__link navegacao__link--ativo" aria-current="page">Contato</a></li>
+                </ul>
+            </nav>
+
+            <div class="cabecalho__acoes">
+                <button type="button" class="botao-tema" id="botao-tema"
+                        aria-label="Mudar para o tema escuro" title="Mudar para o tema escuro">
+                    <span class="botao-tema__icone" aria-hidden="true">🌙</span>
+                </button>
+
+                <button type="button" class="botao-menu" id="botao-menu"
+                        aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="navegacao">
+                    <span class="botao-menu__barra"></span>
+                    <span class="botao-menu__barra"></span>
+                    <span class="botao-menu__barra"></span>
+                </button>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- ======================================================================
+         CONTEÚDO PRINCIPAL
+         ====================================================================== -->
+    <main class="conteudo-principal">
+        <div class="container">
+
+            <!-- ===== Título da página ===== -->
+            <div class="secao-titulo">
+                <span class="secao-titulo__rotulo">Contato</span>
+                <h1>Vamos conversar</h1>
+                <p class="secao-titulo__descricao">
+                    Estou aberto a oportunidades como desenvolvedor .NET júnior e a projetos
+                    freelance. Use o formulário abaixo ou fale comigo pelos canais diretos.
+                </p>
+            </div>
+
+            <div class="contato">
+
+                <!-- ===== Formulário de contato =====
+                     O atributo "novalidate" desliga a validação automática do
+                     navegador de propósito: assim, toda a verificação dos campos
+                     fica a cargo do JavaScript, como pede a atividade. -->
+                <section aria-labelledby="titulo-formulario">
+                    <h2 class="bloco__titulo" id="titulo-formulario">Envie uma mensagem</h2>
+
+                    <form id="formulario-contato" class="formulario" novalidate>
+
+                        <!-- Campo: Nome -->
+                        <div class="formulario__campo">
+                            <label class="formulario__rotulo" for="nome">
+                                Nome <span class="formulario__obrigatorio" aria-hidden="true">*</span>
+                            </label>
+                            <input type="text" id="nome" name="nome"
+                                   class="formulario__entrada"
+                                   placeholder="Como você se chama?"
+                                   autocomplete="name">
+                            <!-- aria-live faz o leitor de tela anunciar o erro
+                                 assim que ele aparecer -->
+                            <span class="formulario__erro" id="erro-nome" role="alert" aria-live="polite"></span>
+                        </div>
+
+                        <!-- Campo: E-mail -->
+                        <div class="formulario__campo">
+                            <label class="formulario__rotulo" for="email">
+                                E-mail <span class="formulario__obrigatorio" aria-hidden="true">*</span>
+                            </label>
+                            <input type="email" id="email" name="email"
+                                   class="formulario__entrada"
+                                   placeholder="usuario@dominio.com"
+                                   autocomplete="email">
+                            <span class="formulario__erro" id="erro-email" role="alert" aria-live="polite"></span>
+                        </div>
+
+                        <!-- Campo: Mensagem -->
+                        <div class="formulario__campo">
+                            <label class="formulario__rotulo" for="mensagem">
+                                Mensagem <span class="formulario__obrigatorio" aria-hidden="true">*</span>
+                            </label>
+                            <textarea id="mensagem" name="mensagem"
+                                      class="formulario__entrada"
+                                      placeholder="Escreva aqui a sua mensagem..."
+                                      rows="6"></textarea>
+                            <span class="formulario__erro" id="erro-mensagem" role="alert" aria-live="polite"></span>
+                        </div>
+
+                        <button type="submit" class="botao botao--primario">Enviar mensagem</button>
+
+                        <p class="formulario__ajuda">
+                            Os campos marcados com <span class="formulario__obrigatorio">*</span>
+                            são obrigatórios. Este site é estático e não possui servidor, portanto
+                            o envio é simulado apenas para demonstrar a validação em JavaScript.
+                        </p>
+
+                    </form>
+                </section>
+
+                <!-- ===== Canais diretos de contato ===== -->
+                <section aria-labelledby="titulo-canais">
+                    <h2 class="bloco__titulo" id="titulo-canais">Canais diretos</h2>
+
+                    <div class="contato__canais">
+
+                        <a class="cartao canal" href="mailto:reinaldogpn@outlook.com">
+                            <span class="canal__icone" aria-hidden="true">✉️</span>
+                            <span>
+                                <span class="canal__rotulo">E-mail</span>
+                                <span class="canal__valor">reinaldogpn@outlook.com</span>
+                            </span>
+                        </a>
+
+                        <a class="cartao canal" href="https://github.com/reinaldogpn"
+                           target="_blank" rel="noopener noreferrer">
+                            <span class="canal__icone" aria-hidden="true">💻</span>
+                            <span>
+                                <span class="canal__rotulo">GitHub</span>
+                                <span class="canal__valor">github.com/reinaldogpn</span>
+                            </span>
+                        </a>
+
+                        <a class="cartao canal" href="https://www.linkedin.com/in/reinaldogpn/"
+                           target="_blank" rel="noopener noreferrer">
+                            <span class="canal__icone" aria-hidden="true">🔗</span>
+                            <span>
+                                <span class="canal__rotulo">LinkedIn</span>
+                                <span class="canal__valor">linkedin.com/in/reinaldogpn</span>
+                            </span>
+                        </a>
+
+                        <div class="cartao canal">
+                            <span class="canal__icone" aria-hidden="true">📍</span>
+                            <span>
+                                <span class="canal__rotulo">Localização</span>
+                                <span class="canal__valor">Sete Lagoas, MG</span>
+                            </span>
+                        </div>
+
+                        <div class="cartao canal">
+                            <span class="canal__icone" aria-hidden="true">🏢</span>
+                            <span>
+                                <span class="canal__rotulo">Disponibilidade</span>
+                                <span class="canal__valor">Belo Horizonte/MG, Joinville/SC e remoto</span>
+                            </span>
+                        </div>
+
+                    </div>
+                </section>
+
+            </div>
+
+        </div>
+    </main>
+
+    <!-- ======================================================================
+         MODAL DE CONFIRMAÇÃO DE ENVIO
+         Fica oculto por padrão (display: none no CSS) e é exibido pelo
+         arquivo js/contato.js somente depois que a validação passa.
+         ====================================================================== -->
+    <div class="modal" id="modal-sucesso" role="dialog" aria-modal="true"
+         aria-labelledby="titulo-modal" aria-hidden="true">
+
+        <div class="modal__caixa">
+            <span class="modal__icone" aria-hidden="true">✅</span>
+            <h2 class="modal__titulo" id="titulo-modal">Mensagem enviada com sucesso!</h2>
+            <p class="modal__texto">
+                Obrigado pelo contato. Responderei o mais breve possível no e-mail informado.
+            </p>
+            <button type="button" class="botao botao--primario" id="fechar-modal">Fechar</button>
+        </div>
+
+    </div>
+
+    <!-- ======================================================================
+         RODAPÉ (idêntico nas 4 páginas)
+         ====================================================================== -->
+    <footer class="rodape">
+        <div class="container rodape__conteudo">
+            <p class="rodape__texto">
+                &copy; <span id="ano-atual">2026</span> Reinaldo Gonçalves Pereira Neto &mdash;
+                feito com HTML5, CSS3 e JavaScript puro.
+            </p>
+            <ul class="rodape__redes">
+                <li><a href="https://github.com/reinaldogpn" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+                <li><a href="https://www.linkedin.com/in/reinaldogpn/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+                <li><a href="mailto:reinaldogpn@outlook.com">E-mail</a></li>
+            </ul>
+        </div>
+    </footer>
+
+</body>
+
+</html>

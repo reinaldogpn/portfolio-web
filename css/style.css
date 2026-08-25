@@ -1,0 +1,983 @@
+/* ==========================================================================
+   PORTFÓLIO PESSOAL - REINALDO GONÇALVES PEREIRA NETO
+   Folha de estilos única, escrita 100% à mão (sem Bootstrap, Tailwind ou
+   qualquer outro framework CSS), conforme exigido pela atividade.
+
+   Sumário:
+   1. Variáveis de tema (claro/escuro)
+   2. Reset e estilos base
+   3. Utilitários de layout
+   4. Cabeçalho e menu de navegação
+   5. Rodapé
+   6. Componentes reutilizáveis (cards, tags, botões)
+   7. Página "Sobre mim"
+   8. Página "Formação"
+   9. Página "Portfólio"
+   10. Página "Contato" (formulário e modal)
+   11. Responsividade (media queries)
+   12. Acessibilidade e preferências do usuário
+   ========================================================================== */
+
+/* ==========================================================================
+   1. VARIÁVEIS DE TEMA
+   As cores ficam centralizadas em variáveis CSS (custom properties). O tema
+   escuro apenas REDEFINE essas mesmas variáveis, então o JavaScript só
+   precisa trocar o atributo data-tema no <html> para o site inteiro mudar.
+   ========================================================================== */
+
+:root {
+    /* Cores do tema claro (padrão) */
+    --cor-fundo: #f4f5f9;
+    --cor-superficie: #ffffff;
+    --cor-superficie-alt: #eceef5;
+    --cor-texto: #171a21;
+    --cor-texto-suave: #5a6172;
+    --cor-borda: #dfe2ec;
+    /* Cor de destaque do site: Dodger Blue */
+    --cor-destaque: #1e90ff;
+    /* Versão escurecida do Dodger Blue, usada APENAS onde a cor de destaque
+       vira texto pequeno ou fundo de botão. O Dodger Blue puro sobre branco
+       alcança só 3,24:1 de contraste, abaixo dos 4,5:1 exigidos pela WCAG;
+       este tom escuro chega a 5,36:1 e mantém o texto legível. */
+    --cor-destaque-forte: #0f6bc4;
+    --cor-destaque-suave: #e3f1ff;
+    --cor-destaque-texto: #ffffff;
+    --cor-sucesso: #12805c;
+    --cor-erro: #c62f43;
+
+    /* Sombras */
+    --sombra-pequena: 0 1px 3px rgba(23, 26, 33, 0.08);
+    --sombra-media: 0 6px 20px rgba(23, 26, 33, 0.09);
+    --sombra-grande: 0 18px 45px rgba(23, 26, 33, 0.16);
+
+    /* Medidas reutilizadas em todo o site */
+    --largura-maxima: 1080px;
+    --raio: 12px;
+    --raio-pequeno: 8px;
+    --transicao: 0.25s ease;
+
+    /* Pilha de fontes do próprio sistema operacional: o site não depende de
+       nenhum arquivo externo, então carrega instantaneamente e funciona
+       mesmo offline. */
+    --fonte: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+    --fonte-mono: "Cascadia Mono", Consolas, "SF Mono", Menlo, monospace;
+}
+
+/* Tema escuro: as MESMAS variáveis com outros valores.
+   Ativado pelo JavaScript através de <html data-tema="escuro"> */
+[data-tema="escuro"] {
+    --cor-fundo: #11131a;
+    --cor-superficie: #191c26;
+    --cor-superficie-alt: #212533;
+    --cor-texto: #e9ebf2;
+    --cor-texto-suave: #a3aabd;
+    --cor-borda: #2b3040;
+    /* No tema escuro o Dodger Blue puro já contrasta bem com o fundo (5,25:1),
+       e a variante de texto é CLAREADA, e não escurecida, chegando a 6,65:1. */
+    --cor-destaque: #1e90ff;
+    --cor-destaque-forte: #4da6ff;
+    --cor-destaque-suave: #12263d;
+    --cor-destaque-texto: #11131a;
+    --cor-sucesso: #4ade9f;
+    --cor-erro: #ff8095;
+
+    --sombra-pequena: 0 1px 3px rgba(0, 0, 0, 0.4);
+    --sombra-media: 0 6px 20px rgba(0, 0, 0, 0.45);
+    --sombra-grande: 0 18px 45px rgba(0, 0, 0, 0.6);
+}
+
+/* ==========================================================================
+   2. RESET E ESTILOS BASE
+   Reset mínimo próprio, para o site partir do mesmo ponto em todos os
+   navegadores.
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    /* Faz os links de âncora rolarem suavemente até o destino */
+    scroll-behavior: smooth;
+    /* Impede que o cabeçalho fixo cubra o alvo da âncora */
+    scroll-padding-top: 90px;
+}
+
+body {
+    font-family: var(--fonte);
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    line-height: 1.65;
+    font-size: 1rem;
+    /* Transição suave ao alternar entre tema claro e escuro */
+    transition: background-color var(--transicao), color var(--transicao);
+    /* Rodapé sempre no fim da página, mesmo com pouco conteúdo */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+h1, h2, h3, h4 {
+    line-height: 1.25;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+h1 { font-size: clamp(1.9rem, 5vw, 2.75rem); }
+h2 { font-size: clamp(1.5rem, 3.5vw, 2rem); }
+h3 { font-size: 1.15rem; }
+
+p { color: var(--cor-texto-suave); }
+
+a {
+    color: var(--cor-destaque-forte);
+    text-decoration: none;
+    transition: color var(--transicao), opacity var(--transicao);
+}
+
+a:hover { text-decoration: underline; }
+
+img {
+    /* Nenhuma imagem estoura a largura do seu contêiner */
+    max-width: 100%;
+    display: block;
+}
+
+ul { list-style: none; }
+
+/* ==========================================================================
+   3. UTILITÁRIOS DE LAYOUT
+   ========================================================================== */
+
+/* Centraliza o conteúdo e cria respiro nas laterais */
+.container {
+    width: 100%;
+    max-width: var(--largura-maxima);
+    margin: 0 auto;
+    padding: 0 1.25rem;
+}
+
+/* <main> cresce para empurrar o rodapé até o fim da tela */
+.conteudo-principal {
+    flex: 1;
+    padding: 3rem 0 4.5rem;
+}
+
+/* Bloco de título que abre cada página */
+.secao-titulo {
+    margin-bottom: 2.5rem;
+}
+
+.secao-titulo__rotulo {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--cor-destaque-forte);
+    background-color: var(--cor-destaque-suave);
+    padding: 0.3rem 0.75rem;
+    border-radius: 999px;
+    margin-bottom: 0.9rem;
+}
+
+.secao-titulo__descricao {
+    margin-top: 0.75rem;
+    max-width: 62ch;
+    font-size: 1.05rem;
+}
+
+/* Espaçamento padrão entre blocos internos de uma página */
+.bloco {
+    margin-top: 3.5rem;
+}
+
+.bloco__titulo {
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.7rem;
+    border-bottom: 2px solid var(--cor-borda);
+}
+
+/* ==========================================================================
+   4. CABEÇALHO E MENU DE NAVEGAÇÃO
+   O mesmo cabeçalho é repetido nas 4 páginas, cumprindo o requisito de um
+   menu visível em todas elas.
+   ========================================================================== */
+
+.cabecalho {
+    position: sticky; /* Menu acompanha a rolagem e fica sempre acessível */
+    top: 0;
+    z-index: 100;
+    background-color: var(--cor-superficie);
+    border-bottom: 1px solid var(--cor-borda);
+    box-shadow: var(--sombra-pequena);
+    transition: background-color var(--transicao), border-color var(--transicao);
+}
+
+.cabecalho__conteudo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 68px;
+}
+
+/* Logotipo textual (iniciais do nome) */
+.logo {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--cor-texto);
+    letter-spacing: -0.03em;
+    white-space: nowrap;
+}
+
+.logo:hover { text-decoration: none; }
+
+.logo__destaque { color: var(--cor-destaque); }
+
+.navegacao__lista {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.navegacao__link {
+    display: block;
+    padding: 0.5rem 0.9rem;
+    border-radius: var(--raio-pequeno);
+    color: var(--cor-texto-suave);
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: color var(--transicao), background-color var(--transicao);
+}
+
+.navegacao__link:hover {
+    color: var(--cor-texto);
+    background-color: var(--cor-superficie-alt);
+    text-decoration: none;
+}
+
+/* Destaca no menu a página que está aberta no momento */
+.navegacao__link--ativo {
+    color: var(--cor-destaque-forte);
+    background-color: var(--cor-destaque-suave);
+}
+
+/* Área dos botões à direita do cabeçalho */
+.cabecalho__acoes {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Botão de alternância de tema claro/escuro */
+.botao-tema {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    font-size: 1.1rem;
+    line-height: 1;
+    cursor: pointer;
+    background-color: var(--cor-superficie-alt);
+    color: var(--cor-texto);
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio-pequeno);
+    transition: background-color var(--transicao), transform var(--transicao);
+}
+
+.botao-tema:hover {
+    background-color: var(--cor-destaque-suave);
+    transform: rotate(-12deg);
+}
+
+/* Botão "hambúrguer": só aparece em telas pequenas (ver media queries) */
+.botao-menu {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    padding: 0 9px;
+    cursor: pointer;
+    background-color: var(--cor-superficie-alt);
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio-pequeno);
+}
+
+.botao-menu__barra {
+    display: block;
+    height: 2px;
+    width: 100%;
+    background-color: var(--cor-texto);
+    border-radius: 2px;
+    transition: transform var(--transicao), opacity var(--transicao);
+}
+
+/* Quando o menu está aberto, as três barras viram um "X" */
+.botao-menu[aria-expanded="true"] .botao-menu__barra:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.botao-menu[aria-expanded="true"] .botao-menu__barra:nth-child(2) {
+    opacity: 0;
+}
+
+.botao-menu[aria-expanded="true"] .botao-menu__barra:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ==========================================================================
+   5. RODAPÉ
+   ========================================================================== */
+
+.rodape {
+    background-color: var(--cor-superficie);
+    border-top: 1px solid var(--cor-borda);
+    padding: 2rem 0;
+    transition: background-color var(--transicao), border-color var(--transicao);
+}
+
+.rodape__conteudo {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.rodape__texto {
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.rodape__redes {
+    display: flex;
+    gap: 1.25rem;
+}
+
+.rodape__redes a {
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   6. COMPONENTES REUTILIZÁVEIS
+   ========================================================================== */
+
+/* --- Cartão genérico, base dos projetos e das formações --- */
+.cartao {
+    background-color: var(--cor-superficie);
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio);
+    padding: 1.5rem;
+    box-shadow: var(--sombra-pequena);
+    transition: transform var(--transicao), box-shadow var(--transicao),
+                border-color var(--transicao), background-color var(--transicao);
+}
+
+/* Efeito de elevação ao passar o mouse */
+.cartao:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--sombra-media);
+    border-color: var(--cor-destaque);
+}
+
+/* --- Etiquetas de tecnologia (C#, .NET, Python...) --- */
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.tag {
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.28rem 0.7rem;
+    border-radius: 999px;
+    background-color: var(--cor-superficie-alt);
+    color: var(--cor-texto-suave);
+    border: 1px solid var(--cor-borda);
+}
+
+/* Variação em destaque, usada nas habilidades principais */
+.tag--destaque {
+    background-color: var(--cor-destaque-suave);
+    color: var(--cor-destaque-forte);
+    border-color: transparent;
+}
+
+/* --- Botões --- */
+.botao {
+    display: inline-block;
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 0.7rem 1.4rem;
+    border-radius: var(--raio-pequeno);
+    border: 1px solid transparent;
+    cursor: pointer;
+    text-align: center;
+    transition: transform var(--transicao), opacity var(--transicao),
+                background-color var(--transicao);
+}
+
+.botao:hover {
+    transform: translateY(-2px);
+    text-decoration: none;
+}
+
+.botao--primario {
+    background-color: var(--cor-destaque-forte);
+    color: var(--cor-destaque-texto);
+}
+
+.botao--primario:hover { opacity: 0.9; }
+
+.botao--secundario {
+    background-color: transparent;
+    color: var(--cor-texto);
+    border-color: var(--cor-borda);
+}
+
+.botao--secundario:hover { background-color: var(--cor-superficie-alt); }
+
+/* ==========================================================================
+   7. PÁGINA "SOBRE MIM"
+   ========================================================================== */
+
+/* Apresentação principal: foto à esquerda, texto à direita */
+.apresentacao {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 2.5rem;
+    align-items: center;
+}
+
+.apresentacao__foto {
+    width: 200px;
+    height: 200px;
+    object-fit: cover; /* Recorta a foto sem distorcer as proporções */
+    border-radius: 50%;
+    border: 4px solid var(--cor-superficie);
+    box-shadow: var(--sombra-grande);
+}
+
+.apresentacao__cargo {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--cor-destaque-forte);
+    margin-top: 0.4rem;
+}
+
+.apresentacao__local {
+    display: inline-block;
+    font-size: 0.92rem;
+    margin-top: 0.5rem;
+}
+
+.apresentacao__texto {
+    margin-top: 1.1rem;
+    font-size: 1.05rem;
+    max-width: 62ch;
+}
+
+.apresentacao__acoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.75rem;
+}
+
+/* Lista de hobbies em cartões */
+.hobbies {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.25rem;
+}
+
+.hobby__icone {
+    font-size: 1.75rem;
+    display: block;
+    margin-bottom: 0.6rem;
+}
+
+.hobby h3 { margin-bottom: 0.35rem; }
+
+.hobby p {
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+/* Grupos de habilidades técnicas */
+.habilidades {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.habilidade__categoria {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: var(--cor-texto-suave);
+    margin-bottom: 0.85rem;
+}
+
+/* ==========================================================================
+   8. PÁGINA "FORMAÇÃO"
+   ========================================================================== */
+
+/* Linha do tempo vertical com marcadores à esquerda */
+.linha-tempo {
+    position: relative;
+    padding-left: 2rem;
+}
+
+/* Linha vertical contínua, desenhada com um pseudo-elemento */
+.linha-tempo::before {
+    content: "";
+    position: absolute;
+    left: 6px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background-color: var(--cor-borda);
+}
+
+.linha-tempo__item {
+    position: relative;
+    padding-bottom: 2rem;
+}
+
+.linha-tempo__item:last-child { padding-bottom: 0; }
+
+/* Bolinha que marca cada etapa da formação */
+.linha-tempo__item::before {
+    content: "";
+    position: absolute;
+    left: -2rem;
+    top: 10px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color: var(--cor-fundo);
+    border: 3px solid var(--cor-destaque);
+}
+
+.linha-tempo__periodo {
+    display: inline-block;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--cor-destaque-forte);
+    margin-bottom: 0.3rem;
+}
+
+.linha-tempo__instituicao {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--cor-texto-suave);
+    margin-bottom: 0.5rem;
+}
+
+/* Selo de situação do curso (em andamento / concluído) */
+.selo {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+}
+
+.selo--andamento {
+    background-color: var(--cor-destaque-suave);
+    color: var(--cor-destaque-forte);
+}
+
+.selo--concluido {
+    background-color: var(--cor-superficie-alt);
+    color: var(--cor-texto-suave);
+}
+
+/* Grade usada por idiomas e certificações */
+.grade-dupla {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem;
+}
+
+.idioma__nivel {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--cor-destaque-forte);
+}
+
+/* Barra de proficiência do idioma (apenas visual) */
+.barra {
+    height: 7px;
+    width: 100%;
+    background-color: var(--cor-superficie-alt);
+    border-radius: 999px;
+    margin-top: 0.7rem;
+    overflow: hidden;
+}
+
+.barra__preenchimento {
+    height: 100%;
+    background-color: var(--cor-destaque);
+    border-radius: 999px;
+}
+
+/* ==========================================================================
+   9. PÁGINA "PORTFÓLIO"
+   ========================================================================== */
+
+.projetos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+}
+
+/* O cartão vira coluna flexível para o rodapé do card ficar sempre embaixo */
+.projeto {
+    display: flex;
+    flex-direction: column;
+}
+
+.projeto__cabecalho {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.6rem;
+}
+
+.projeto__ano {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--cor-texto-suave);
+    white-space: nowrap;
+    padding-top: 0.2rem;
+}
+
+.projeto__descricao {
+    font-size: 0.95rem;
+    flex: 1; /* Empurra as tags e o link para a base do cartão */
+    margin-bottom: 1.1rem;
+}
+
+.projeto__tecnologias { margin-bottom: 1.1rem; }
+
+.projeto__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--cor-borda);
+}
+
+.projeto__link {
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* Aviso para o projeto de cliente, cujo código é privado */
+.projeto__nota {
+    font-size: 0.85rem;
+    font-style: italic;
+    color: var(--cor-texto-suave);
+}
+
+/* Cartão em destaque, para o projeto principal */
+.projeto--destaque {
+    grid-column: 1 / -1; /* Ocupa a linha inteira da grade */
+    border-color: var(--cor-destaque);
+    background-color: var(--cor-destaque-suave);
+}
+
+/* ==========================================================================
+   10. PÁGINA "CONTATO" - FORMULÁRIO E MODAL
+   ========================================================================== */
+
+.contato {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 2.5rem;
+    align-items: start;
+}
+
+/* --- Formulário --- */
+.formulario__campo { margin-bottom: 1.35rem; }
+
+.formulario__rotulo {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 0.45rem;
+}
+
+.formulario__obrigatorio { color: var(--cor-erro); }
+
+.formulario__entrada {
+    width: 100%;
+    font-family: inherit;
+    font-size: 1rem;
+    color: var(--cor-texto);
+    background-color: var(--cor-fundo);
+    padding: 0.75rem 0.9rem;
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio-pequeno);
+    transition: border-color var(--transicao), box-shadow var(--transicao);
+}
+
+.formulario__entrada:focus {
+    outline: none;
+    border-color: var(--cor-destaque);
+    box-shadow: 0 0 0 3px var(--cor-destaque-suave);
+}
+
+textarea.formulario__entrada {
+    resize: vertical; /* O usuário só redimensiona na vertical */
+    min-height: 150px;
+}
+
+/* Estado de erro aplicado pelo JavaScript quando a validação falha */
+.formulario__entrada--erro {
+    border-color: var(--cor-erro);
+}
+
+.formulario__entrada--erro:focus {
+    box-shadow: 0 0 0 3px rgba(198, 47, 67, 0.15);
+}
+
+/* Mensagem de erro exibida abaixo de cada campo */
+.formulario__erro {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--cor-erro);
+    margin-top: 0.4rem;
+    min-height: 1.2rem; /* Reserva espaço para o layout não "pular" */
+}
+
+.formulario__ajuda {
+    font-size: 0.85rem;
+    margin-top: 1rem;
+}
+
+/* --- Cartão lateral com os canais de contato --- */
+.contato__canais { display: grid; gap: 1rem; }
+
+.canal {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    padding: 1rem;
+}
+
+.canal__icone {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 42px;
+    height: 42px;
+    font-size: 1.2rem;
+    border-radius: var(--raio-pequeno);
+    background-color: var(--cor-destaque-suave);
+}
+
+.canal__rotulo {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--cor-texto-suave);
+}
+
+.canal__valor {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--cor-texto);
+    /* Quebra endereços longos (e-mail, URLs) para não estourarem o cartão */
+    overflow-wrap: break-word;
+}
+
+a.canal:hover { text-decoration: none; }
+a.canal:hover .canal__valor { color: var(--cor-destaque-forte); }
+
+/* --- Modal de confirmação de envio ---
+   Fica oculto por padrão e é exibido pelo JavaScript após a validação. */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0; /* Cobre a tela inteira */
+    z-index: 200;
+    background-color: rgba(10, 12, 18, 0.6);
+    padding: 1.25rem;
+    /* Centraliza a caixa do modal */
+    align-items: center;
+    justify-content: center;
+}
+
+/* Classe adicionada pelo JavaScript para exibir o modal */
+.modal--visivel { display: flex; }
+
+.modal__caixa {
+    background-color: var(--cor-superficie);
+    border-radius: var(--raio);
+    box-shadow: var(--sombra-grande);
+    padding: 2.25rem 2rem;
+    max-width: 420px;
+    width: 100%;
+    text-align: center;
+    /* Pequena animação de entrada */
+    animation: surgir 0.28s ease;
+}
+
+@keyframes surgir {
+    from { opacity: 0; transform: translateY(16px) scale(0.97); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.modal__icone {
+    display: grid;
+    place-items: center;
+    width: 62px;
+    height: 62px;
+    margin: 0 auto 1.1rem;
+    font-size: 1.9rem;
+    border-radius: 50%;
+    background-color: var(--cor-destaque-suave);
+}
+
+.modal__titulo {
+    color: var(--cor-sucesso);
+    margin-bottom: 0.6rem;
+}
+
+.modal__texto { margin-bottom: 1.6rem; }
+
+/* ==========================================================================
+   11. RESPONSIVIDADE
+   O site precisa funcionar em computador, notebook, tablet e smartphone.
+   ========================================================================== */
+
+/* --- Tablets e telas menores --- */
+@media (max-width: 860px) {
+    /* O menu horizontal vira um painel suspenso controlado pelo hambúrguer */
+    .botao-menu { display: flex; }
+
+    .navegacao {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: var(--cor-superficie);
+        border-bottom: 1px solid var(--cor-borda);
+        box-shadow: var(--sombra-media);
+        padding: 0.75rem 1.25rem 1.1rem;
+    }
+
+    /* Classe alternada pelo JavaScript ao clicar no hambúrguer */
+    .navegacao--aberta { display: block; }
+
+    .navegacao__lista {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.2rem;
+    }
+
+    .navegacao__link {
+        padding: 0.8rem 0.9rem;
+        font-size: 1rem;
+    }
+
+    /* O painel suspenso se posiciona a partir do conteúdo do cabeçalho,
+       que continua fixo no topo durante a rolagem. */
+    .cabecalho__conteudo { position: relative; }
+
+    /* Foto acima do texto, tudo centralizado */
+    .apresentacao {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        text-align: center;
+        gap: 1.75rem;
+    }
+
+    .apresentacao__acoes { justify-content: center; }
+
+    /* Formulário e canais de contato empilhados */
+    .contato { grid-template-columns: 1fr; }
+}
+
+/* --- Smartphones --- */
+@media (max-width: 520px) {
+    .conteudo-principal { padding: 2rem 0 3rem; }
+
+    .bloco { margin-top: 2.5rem; }
+
+    .apresentacao__foto {
+        width: 158px;
+        height: 158px;
+    }
+
+    .projetos,
+    .habilidades,
+    .hobbies,
+    .grade-dupla {
+        grid-template-columns: 1fr;
+    }
+
+    .cartao { padding: 1.25rem; }
+
+    /* Botões ocupam a largura total, mais fáceis de tocar */
+    .apresentacao__acoes .botao { width: 100%; }
+
+    .rodape__conteudo {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+/* ==========================================================================
+   12. ACESSIBILIDADE E PREFERÊNCIAS DO USUÁRIO
+   ========================================================================== */
+
+/* Contorno visível ao navegar pelo teclado (tecla Tab) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid var(--cor-destaque);
+    outline-offset: 2px;
+}
+
+/* Respeita quem configurou o sistema para reduzir animações */
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Ajustes para impressão do currículo */
+@media print {
+    .cabecalho,
+    .rodape,
+    .modal { display: none !important; }
+
+    body { background-color: #ffffff; color: #000000; }
+}
