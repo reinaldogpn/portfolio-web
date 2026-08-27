@@ -147,7 +147,7 @@ img {
     display: block;
 }
 
-ul { list-style: none; }
+ul, ol { list-style: none; }
 
 /* ==========================================================================
    3. UTILITÁRIOS DE LAYOUT
