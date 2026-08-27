@@ -476,7 +476,11 @@ ul, ol { list-style: none; }
 }
 
 .apresentacao__local {
-    display: inline-block;
+    font-size: 0.92rem;
+    margin-top: 0.5rem;
+}
+
+.apresentacao__dispo {
     font-size: 0.92rem;
     margin-top: 0.5rem;
 }
